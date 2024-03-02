@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "peerpulse",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,5 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.2",
+    "zod": "^3.22.4"
+  }
 }
