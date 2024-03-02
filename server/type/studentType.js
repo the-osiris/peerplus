@@ -2,13 +2,13 @@ const z = require("zod");
 
 const studentValidation = z.object({
     username:z.string().email(),
-    firstName: z.string().max(30),
-    lastName: z.string().max(30),
     password: z.string().min(8) //create for alnumwith special cahr
 });
 
 const signinBody = z.object({
-    username: z.string().email(),
+    username: z.string().email().refine(email => email.endsWith('@ahduniv.edu.in'), {
+        message: 'Email must be of the kind @ahduniv.edu.in',
+    }),
 	password: z.string().min(8)
 })
 const editBody = z.object({
@@ -24,3 +24,6 @@ module.exports = {
     editBody:editBody
 }
 
+/*.refine(email => email.endsWith('@ahduniv.edu.in'), {
+        message: 'Email must be of the kind @ahduniv.edu.in',
+    })*/

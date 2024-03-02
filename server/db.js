@@ -20,18 +20,11 @@ const studentSchema = new mongoose.Schema({
         required: true,
         minLength:6
     },
-    firstName: {
-        type: String,
-        required: true,
-        maxLength: 30,
-        trim:true
+
+    verified: {
+        type: Boolean,
+        default: false
     },
-    lastName: {
-        type: String,
-        required: true,
-        maxLength: 30,
-        trim:true
-    }
 });
 
 
