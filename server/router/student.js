@@ -7,20 +7,20 @@ const {JWT_SECRET} = require('../config.js');
 const { authMiddleware } = require('../middlewares/authMiddleware.js');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const session = require('express-session');
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // set to true if you're using https
-}));
+// const session = require('express-session');
+// app.use(session({
+//     secret: 'your-secret-key',
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false } // set to true if you're using https
+// }));
 //Configuring nodemailer
 
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'raghavprasad98@gmail.com',
-        pass:'9838618149'
+        user: '',
+        pass: ''
     }
 });
 
