@@ -13,10 +13,11 @@ function Register() {
     cpassword: "",
   });
 
-  const handleOTPChange = (e) => {
-    setOtp(otp + e);
-  };
-  //   console.log(otp)
+//   const handleOTPChange = (e) => {
+//     setOtp(otp + e);
+//   };
+    //   console.log(otp)
+    
   const onInputChange = (e) => {
     setRegisterData({ ...registerData, [e.target.name]: e.target.value });
   };
@@ -27,11 +28,11 @@ function Register() {
       <div className="w-full flex items-center justify-center">
         <div className="flex flex-col gap-2 items-center">
           <p className="text-sm text-gray-400">
-                    OTP Sent to submitted email address.{ otp}
+                OTP Sent to submitted email address.{ otp}
           </p>
           <OtpInput
             value={otp}
-            onChange={(e) => handleOTPChange(e)}
+            onChange={(e) => setOtp(e)}
             isInputNum={true}
             shouldAutoFocus={true}
             // containerStyle={"flex gap-2"}
