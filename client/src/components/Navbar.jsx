@@ -3,6 +3,7 @@ import { BsGlobe2 } from "react-icons/bs";
 import { AiOutlineMessage } from "react-icons/ai";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link, useLocation } from "react-router-dom";
+import profileImg from "../assets/image/Male.png";
 
 function Navbar() {
   const [path, setPath] = useState("discover");
@@ -66,9 +67,9 @@ function Navbar() {
             }
           >
             <img
-              src=""
+              src={profileImg}
               alt="no"
-              className="w-[50px] h-[50px] rounded-[50%] border-[1px]"
+              className="w-[50px] h-[50px] rounded-[50%] border-[2px] border-white"
             />
             <div className="flex flex-col items-end">
               <p className="text-md">Username</p>
