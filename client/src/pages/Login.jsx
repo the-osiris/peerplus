@@ -46,7 +46,7 @@ function Login() {
               <Link to="/signup" className="text-blue-500 hover:text-blue-700">
                 Register here!
               </Link>
-              <div className="right-0 top-0 absolute w-[400px] h-[250px] bg-[#4461F2] blur-3xl opacity-30"></div>
+              <div className="right-0 top-0 z-[-10] absolute w-[400px] h-[250px] bg-[#4461F2] blur-3xl opacity-30"></div>
             </div>
             <div className=""></div>
             <img
