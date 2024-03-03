@@ -8,7 +8,7 @@ function Home() {
     <div className="flex w-full h-full bg-[#F6F6F6]">
       <Navbar />
       <Discover />
-      {/* <Yourpeer /> */}
+      <Yourpeer />
     </div>
   );
 }
