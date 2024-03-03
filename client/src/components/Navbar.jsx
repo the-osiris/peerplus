@@ -73,7 +73,7 @@ function Navbar() {
             />
             <div className="flex flex-col items-end">
               <p className="text-md">Username</p>
-              <p className="text-sm text-gray-500">Full Name</p>
+              <p className="text-sm text-gray-400">Full Name</p>
             </div>
           </div>
         </Link>
