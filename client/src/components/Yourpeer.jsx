@@ -75,7 +75,7 @@ function Yourpeer() {
       peer.subjects.includes(activeButton)
     );
     setFilteredPeers(newFilteredPeers);
-  }, [activeButton, peersList]);
+  }, [activeButton]);
 
   return (
     <div className="w-[20%] h-screen pt-4 flex flex-col gap-6">
@@ -89,7 +89,7 @@ function Yourpeer() {
           <button
             key={subject}
             className={`text-black bg-white border border-gray-400 px-1 text-xs font-semibold py-1 rounded-md ${
-              activeButton === subject ? "bg-black text-white" : ""
+              activeButton === subject ? "bg-slate-950 text-neutral-100" : ""
             }`}
             onClick={handleActiveButton(subject)}
           >
