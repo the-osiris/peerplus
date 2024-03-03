@@ -89,7 +89,7 @@ function Yourpeer() {
           <button
             key={subject}
             className={`text-black bg-white border border-gray-400 px-1 text-xs font-semibold py-1 rounded-md ${
-              activeButton === subject ? "bg-slate-950 text-neutral-100" : ""
+              activeButton === subject ? "bg-slate-900 text-neutral-100" : ""
             }`}
             onClick={handleActiveButton(subject)}
           >
