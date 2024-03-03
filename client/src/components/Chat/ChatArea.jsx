@@ -1,10 +1,17 @@
-import React, { useEffect, useRef} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiOutlineEmojiHappy } from "react-icons/hi";
 import { IoSend } from "react-icons/io5";
+import EmojiPicker from "emoji-picker-react";
 
-function ChatArea({ activeInteraction, setActiveInteraction, totalMessages, setTotalMessages}) {
+function ChatArea({
+  activeInteraction,
+  setActiveInteraction,
+  totalMessages,
+  setTotalMessages,
+}) {
   const inputRef = useRef(null);
-
+  const [showEmojiPicker, setShowEmojiPicker] = React.useState(false);
+  const [message, setMessage] = useState("");
   function handleMessageSend() {
     const message = inputRef.current.value;
     if (message.trim() === "") return;
@@ -17,7 +24,10 @@ function ChatArea({ activeInteraction, setActiveInteraction, totalMessages, setT
       }),
     };
     const newMessages = [...activeInteraction.messages, newMessage];
-    const newActiveInteraction = { ...activeInteraction, messages: newMessages };
+    const newActiveInteraction = {
+      ...activeInteraction,
+      messages: newMessages,
+    };
     const newTotalMessages = totalMessages.map((message) =>
       message.username === newActiveInteraction.username
         ? newActiveInteraction
@@ -28,13 +38,18 @@ function ChatArea({ activeInteraction, setActiveInteraction, totalMessages, setT
     inputRef.current.value = "";
   }
 
+  const onEmojiClick = (emojiObject) => {
+    console.log(emojiObject);
+    setMessage((prevMessage) => prevMessage + emojiObject.emoji); // Append the selected emoji to the message
+    setShowEmojiPicker(false); // Optionally close the picker after selection
+  };
+
   useEffect(() => {
     if (activeInteraction !== null) {
       inputRef.current.focus();
     }
 
     console.log(totalMessages);
-
   }, [totalMessages]);
 
   return (
@@ -46,7 +61,7 @@ function ChatArea({ activeInteraction, setActiveInteraction, totalMessages, setT
           </p>
         </div>
       ) : (
-        <div className="w-full h-full flex flex-col gap-4">
+        <div className="w-full h-full flex flex-col gap-4 relative">
           <div className="h-1/5 flex items-center justify-center gap-2 bg-white px-6 py-4">
             <div className="flex flex-col items-center justify-center gap-1">
               <img
@@ -69,7 +84,7 @@ function ChatArea({ activeInteraction, setActiveInteraction, totalMessages, setT
             </div>
           </div>
 
-          <div className="h-3/4 flex flex-col gap-4 px-4">
+          <div className="h-3/4 flex flex-col gap-4 px-4 relative">
             {activeInteraction.messages.map((message) => (
               <div
                 key={message.text}
@@ -102,21 +117,43 @@ function ChatArea({ activeInteraction, setActiveInteraction, totalMessages, setT
             ))}
           </div>
 
-          <div className="flex items-center justify-between gap-4 bg-white px-6 py-4">
+          <div className="flex items-center justify-between gap-4 bg-white px-6 py-4 relative">
             <div className="w-full h-full flex items-center justify-between gap-2 bg-white px-2 py-1 shadow-md rounded-full border border-gray-300">
-              <HiOutlineEmojiHappy className="text-3xl text-[#4461F2]" />
+              <HiOutlineEmojiHappy
+                onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                className="text-2xl text-[#4461F2] hover:cursor-pointer"
+              />
               <input
                 ref={inputRef}
                 type="text"
                 placeholder="Type a message"
+                value={message} // Bind the input to the message state
+                onChange={(e) => setMessage(e.target.value)}
                 className="w-full px-2 py-2 bg-transparent focus:outline-none text-gray-700"
               />
-              <button onClick={handleMessageSend} className="text-[#4461F2] font-semibold">
+              <button
+                onClick={handleMessageSend}
+                className="text-[#4461F2] font-semibold"
+              >
                 <IoSend className="text-xl" />
               </button>
             </div>
-          </div>
 
+            <div className="absolute bottom-20 left-6">
+              <EmojiPicker
+                open={showEmojiPicker}
+                onEmojiClick={onEmojiClick}
+                width={400}
+                height={300}
+                pickerStyle={{
+                  position: "absolute",
+                  top: "0px",
+                  left: "0px",
+                  zIndex: 10,
+                }}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>
